@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Artisan Bakery Singapore CBD | Premium Sourdough & Pastries</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --clr-primary: #6B402B;
+    --clr-secondary: #D9B382;
+    --clr-bg: #FAF8F5;
+    --clr-text: #3C2F2F;
+    --clr-text-light: #6B5845;
+    --transition: 0.3s ease;
+    --radius: 8px;
+    --max-width: 1100px;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; background: var(--clr-bg); color: var(--clr-text); font-family: 'Open Sans', sans-serif; line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    margin: 0 0 .5rem 0;
+    color: var(--clr-primary);
+  }
+  h1 {
+    font-size: 2.8rem;
+    line-height: 1.1;
+  }
+  h2 {
+    font-size: 2.2rem;
+  }
+  h3 {
+    font-size: 1.8rem;
+  }
+  a {
+    color: var(--clr-primary);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  a:hover, a:focus {
+    color: var(--clr-secondary);
+  }
+  small {
+    color: var(--clr-text-light);
+  }
+  .container {
+    width: 90vw;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+  header {
+    background: lightblue;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  nav .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    color: var(--clr-primary);
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    font-weight: 600;
+  }
+  nav a {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  nav a.active,
+  nav a:hover,
+  nav a:focus {
+    color: var(--clr-secondary);
+  }
+  main {
+    scroll-margin-top: 90px;
+  }
+
+  /* HOME */
+  #home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 1rem 4rem;
+    background: url('https://images.unsplash.com/photo-1542838691-d908fd1aa2af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+    color: #fff;
+    position: relative;
+  }
+  #home::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(107,64,43,0.65);
+    z-index: 0;
+  }
+  #home > * {
+    position: relative;
+    z-index: 1;
+  }
+  #home h1 {
+    font-size: 3rem;
+    max-width: 600px;
+    margin-bottom: 1rem;
+  }
+  #home p {
+    font-size: 1.2rem;
+    max-width: 450px;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+  }
+  #home .btn-primary {
+    background: var(--clr-secondary);
+    color: var(--clr-primary);
+    border: none;
+    padding: 0.75rem 2.25rem;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 6px 0 #a57c44;
+    transition: background 0.3s ease, box-shadow 0.2s ease;
+  }
+  #home .btn-primary:hover,
+  #home .btn-primary:focus {
+    background: #c4a26a;
+    box-shadow: 0 3px 0 #8a6e2e;
+    outline: none;
+  }
+
+  /* MENU */
+  #menu {
+    background: #fff;
+    padding-bottom: 4rem;
+  }
+  #menu h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .menu-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+  }
+  .menu-slider::-webkit-scrollbar {
+    height: 9px;
+  }
+  .menu-slider::-webkit-scrollbar-track {
+    background: #f1e9dc;
+    border-radius: 50px;
+  }
+  .menu-slider::-webkit-scrollbar-thumb {
+    background: var(--clr-secondary);
+    border-radius: 50px;
+  }
+  .menu-card {
+    scroll-snap-align: center;
+    background: var(--clr-bg);
+    flex: 0 0 280px;
+    border-radius: var(--radius);
+    box-shadow: 0 5px 15px rgb(0 0 0/0.07);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .menu-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--clr-secondary);
+    transition: transform 0.4s ease;
+  }
+  .menu-card:hover img,
+  .menu-card:focus-within img {
+    transform: scale(1.07);
+  }
+  .menu-card-content {
+    padding: 1rem 1.2rem 1.4rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .menu-card-content h3 {
+    margin-bottom: 0.4rem;
+  }
+  .menu-card-content p {
+    font-size: 0.9rem;
+    color: var(--clr-text-light);
+    flex-grow: 1;
+  }
+  .price {
+    font-weight: 700;
+    margin-top: 0.8rem;
+    color: var(--clr-primary);
+  }
+
+  /* ABOUT */
+  #about {
+    padding: 4rem 1rem 4rem;
+    background: var(--clr-bg);
+  }
+  #about .container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  #about h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  #about p {
+    font-size: 1.1rem;
+    color: var(--clr-text-light);
+    text-align: justify;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: #fff;
+    padding: 4rem 1rem 5rem;
+  }
+  #contact .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  #contact h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  #contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--clr-text-light);
+  }
+  #contact-info div {
+    flex: 1 1 280px;
+    background: var(--clr-bg);
+    box-shadow: 0 5px 12px rgb(0 0 0/0.03);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.5rem 2rem;
+    text-align: center;
+  }
+  #contact-info h3 {
+    margin-bottom: 0.7rem;
+    color: var(--clr-primary);
+  }
+  #contact-info p {
+    margin: 0.2rem 0 0.8rem;
+  }
+  .map {
+    border-radius: var(--radius);
+    border: none;
+    width: 100%;
+    max-width: 400px;
+    height: 220px;
+  }
+  /* Pre-order CTA */
+  #preorder-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+  #preorder-cta button {
+    background: var(--clr-primary);
+    color: var(--clr-bg);
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.9rem 2.5rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 7px 0 #5a3424;
+    transition: background 0.3s ease, box-shadow 0.2s ease;
+  }
+  #preorder-cta button:hover, #preorder-cta button:focus {
+    background: #56301d;
+    box-shadow: 0 4px 0 #3e220f;
+    outline: none;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials {
+    padding: 4rem 1rem 4rem;
+    background: var(--clr-bg);
+  }
+  #testimonials h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .testimonial-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 2rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: #fff;
+    padding: 1.7rem 1.6rem 2rem;
+    border-radius: var(--radius);
+    box-shadow: 0 3px 12px rgb(0 0 0 / 0.06);
+    font-style: italic;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: "“";
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--clr-secondary);
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    font-weight: 700;
+  }
+  .testimonial-text {
+    margin-bottom: 1rem;
+    color: var(--clr-text-light);
+  }
+  .testimonial-author {
+    text-align: right;
+    font-weight: 700;
+    color: var(--clr-primary);
+    font-size: 0.95rem;
+  }
+
+  /* LEAD COLLECTION */
+  #newsletter {
+    background: var(--clr-primary);
+    color: var(--clr-bg);
+    padding: 4rem 1rem 4rem;
+  }
+  #newsletter .container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  #newsletter h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  #newsletter p {
+    font-weight: 600;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  input[type="email"], input[type="text"] {
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    flex: 1 1 180px;
+    max-width: 290px;
+  }
+  input[type="email"]:focus, input[type="text"]:focus {
+    outline: 2px solid var(--clr-secondary);
+  }
+  button[type="submit"] {
+    background: var(--clr-secondary);
+    color: var(--clr-primary);
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.75rem 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    flex: 1 1 130px;
+    max-width: 130px;
+    box-shadow: 0 5px 0 #a57c44;
+    transition: background 0.3s ease, box-shadow 0.2s ease;
+  }
+  button[type="submit"]:hover,
+  button[type="submit"]:focus {
+    background: #c4a26a;
+    box-shadow: 0 3px 0 #8a6e2e;
+    outline: none;
+  }
+  .form-status {
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+  #update-email-section {
+    margin-top: 3rem;
+    border-top: 1.5px solid rgba(255 255 255 / 0.35);
+    padding-top: 2.5rem;
+  }
+  #update-email-section h3 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+  #update-email-section form {
+    gap: 0.8rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* Responsive */
+  @media (min-width: 700px) {
+    #about .container {
+      flex-direction: row;
+      gap: 4rem;
+    }
+    #about p {
+      flex: 1;
+    }
+  }
+  @media (min-width: 900px) {
+    #home h1 {
+      font-size: 4rem;
+    }
+    #home p {
+      font-size: 1.3rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container" role="banner">
+    <nav aria-label="Primary navigation">
+      <a href="#home" class="logo">The Artisan Oven</a>
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section id="home" role="region" aria-labelledby="home-title">
+  <h1 id="home-title">Premium Artisan Bakery in Singapore CBD</h1>
+  <p>Experience freshly baked sourdough, pastries, and seasonal cakes crafted with passion and finest ingredients.</p>
+  <button class="btn-primary" aria-label="Book online pre-order" id="btnPreorder">Book Now</button>
+</section>
+
+<section id="menu" class="container" role="region" aria-labelledby="menu-title" tabindex="-1">
+  <h2 id="menu-title">Our Artisan Menu</h2>
+  <div class="menu-slider" aria-live="polite">
+    <article class="menu-card" tabindex="0" aria-label="Sourdough Loaf">
+      <img src="https://images.unsplash.com/photo-1607473511580-f365edc1cad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=580&q=80" alt="Rustic artisan sourdough loaf" loading="lazy" />
+      <div class="menu-card-content">
+        <h3>Classic Sourdough Loaf</h3>
+        <p>Handcrafted daily using natural fermentation for a crisp crust and tangy depth.</p>
+        <div class="price">S$8.50</div>
+      </div>
+    </article>
+    <article class="menu-card" tabindex="0" aria-label="Croissant">
+      <img src="https://images.unsplash.com/photo-1568639367171-9a3814f09d31?ixlib=rb-4.0.3&auto=format&fit=crop&w=580&q=80" alt="Flaky butter croissant" loading="lazy" />
+      <div class="menu-card-content">
+        <h3>Butter Croissant</h3>
+        <p>Flaky, buttery layers baked fresh every morning—perfect with your coffee.</p>
+        <div class="price">S$4.20</div>
+      </div>
+    </article>
+    <article class="menu-card" tabindex="0" aria-label="Seasonal Mango Cake">
+      <img src="https://images.unsplash.com/photo-1587896991964-443c9edec1cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=580&q=80" alt="Seasonal mango cake with fresh fruit topping" loading="lazy" />
+      <div class="menu-card-content">
+        <h3>Seasonal Mango Cake</h3>
+        <p>Light sponge and cream topped with the freshest seasonal mangoes & passionfruit.</p>
+        <div class="price">S$12.00</div>
+      </div>
+    </article>
+    <article class="menu-card" tabindex="0" aria-label="Chocolate Éclair">
+      <img src="https://images.unsplash.com/photo-1603202881912-639b568c3af9?ixlib=rb-4.0.3&auto=format&fit=crop&w=580&q=80" alt="Chocolate éclair with glossy glaze" loading="lazy" />
+      <div class="menu-card-content">
+        <h3>Chocolate Éclair</h3>
+        <p>Delicate choux pastry filled with rich chocolate cream, finished with glossy ganache.</p>
+        <div class="price">S$5.50</div>
+      </div>
+    </article>
+    <article class="menu-card" tabindex="0" aria-label="Walnut & Fig Sourdough">
+      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=580&q=80" alt="Walnut and fig studded sourdough loaf" loading="lazy" />
+      <div class="menu-card-content">
+        <h3>Walnut & Fig Sourdough</h3>
+        <p>Artisan bread studded with crunchy walnuts and sweet dried figs, perfect for brunch.</p>
+        <div class="price">S$9.80</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="about" role="region" aria-labelledby="about-title">
+  <div class="container">
+    <h2 id="about-title">Our Story</h2>
+    <p>Founded in the heart of Singapore’s CBD, The Artisan Oven is born from a passion for authentic handcrafted baking. We combine traditional fermentation methods with the finest, locally sourced ingredients to offer a truly premium bakery experience. Our team of skilled bakers work tirelessly each day to craft sourdough breads, delicate pastries, and seasonal cakes that delight your palate, fit for your busy lifestyle.</p>
+  </div>
+</section>
+
+<section id="testimonials" role="region" aria-labelledby="testimonials-title">
+  <div class="container">
+    <h2 id="testimonials-title">What Our Customers Say</h2>
+    <div class="testimonial-list">
+      <blockquote class="testimonial-card" tabindex="0">
+        <p class="testimonial-text">The sourdough here is next-level – crispy crust, perfect tanginess. Perfect fuel for my mornings!</p>
+        <footer class="testimonial-author">– Rachel C., Finance Executive</footer>
+      </blockquote>
+      <blockquote class="testimonial-card" tabindex="0">
+        <p class="testimonial-text">I love their seasonal cakes. The mango cake tastes so fresh, it’s my favorite treat after work.</p>
+        <footer class="testimonial-author">– Andrew T., Consultant</footer>
+      </blockquote>
+      <blockquote class="testimonial-card" tabindex="0">
+        <p class="testimonial-text">The pastries are flaky and buttery without being greasy. Such a delight during lunch breaks.</p>
+        <footer class="testimonial-author">– Mei Ling, Marketing Manager</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="contact" role="region" aria-labelledby="contact-title">
+  <div class="container">
+    <h2 id="contact-title">Visit or Contact Us</h2>
+    <div id="contact-info">
+      <div>
+        <h3>Location</h3>
+        <p>12 Shenton Way, #01-05<br />Singapore 068809</p>
+        <iframe class="map" loading="lazy" aria-label="Google map location of The Artisan Oven" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8882222665176!2d103.85286821475535!3d1.2751363618112365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da19b9ccec6c4f%3A0x403e1d6f44d9ba8d!2s12%20Shenton%20Way%2C%20Singapore%20068809!5e0!3m2!1sen!2ssg!4v1696340700000!5m2!1sen!2ssg"></iframe>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>Phone: <a href="tel:+6561234567" aria-label="Call bakery phone number">+65 6123 4567</a></p>
+        <p>Email: <a href="mailto:hello@theartisanoven.sg">hello@theartisanoven.sg</a></p>
+      </div>
+    </div>
+    <div id="preorder-cta">
+      <button aria-label="Book online pre-order" id="btnPreorderBottom">Book Your Pre-order</button>
+    </div>
+  </div>
+</section>
+
+<section id="newsletter" role="region" aria-labelledby="newsletter-title">
+  <div class="container">
+    <h2 id="newsletter-title">Stay Updated & Enjoy Exclusive Offers</h2>
+    <p>Sign up for our newsletter and be the first to know about new products, seasonal specials, and exclusive promotions.</p>
+    <form id="register-form" aria-label="Newsletter sign up form">
+      <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required autocomplete="name" />
+      <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required autocomplete="email" />
+      <button type="submit">Sign Up</button>
+    </form>
+    <p class="form-status" role="alert" id="register-status" aria-live="polite" aria-atomic="true"></p>
+
+    <section id="update-email-section" aria-labelledby="update-email-title">
+      <h3 id="update-email-title">Update Your Registered Email</h3>
+      <form id="update-email-form" aria-label="Update email form">
+        <input type="email" name="oldEmail" placeholder="Old Email" aria-label="Old Email" required />
+        <input type="email" name="newEmail" placeholder="New Email" aria-label="New Email" required />
+        <button type="submit">Update Email</button>
+      </form>
+      <p class="form-status" role="alert" id="update-status" aria-live="polite" aria-atomic="true"></p>
+    </section>
+  </div>
+</section>
+</main>
+
+<script>
+const siteId = new URLSearchParams(window.location.search).get('id') || '';
+
+async function registerUser(email, name) {
+  try {
+    const res = await fetch('https://techtravelthink.app.n8n.cloud/webhook/user-register', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ action: 'register', email, name, websiteId: siteId, source: window.location.href })
+    });
+    const data = await res.json();
+    return data.success ? 'Registered successfully!' : (data.message || 'Registration failed');
+  } catch(e) { return 'Network error. Please try again.'; }
+}
+
+async function updateUserEmail(oldEmail, newEmail) {
+  try {
+    const res = await fetch('https://techtravelthink.app.n8n.cloud/webhook/user-register', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ action: 'update', oldEmail, newEmail, websiteId: siteId })
+    });
+    const data = await res.json();
+    return data.success ? 'Email updated successfully!' : (data.message || 'Update failed');
+  } catch(e) { return 'Network error. Please try again.'; }
+}
+
+const registerForm = document.getElementById('register-form');
+const registerStatus = document.getElementById('register-status');
+const updateForm = document.getElementById('update-email-form');
+const updateStatus = document.getElementById('update-status');
+const btnPreorder = document.getElementById('btnPreorder');
+const btnPreorderBottom = document.getElementById('btnPreorderBottom');
+
+function openBooking() {
+  // Simulate booking action via alert or open pre-order booking link
+  alert("Thank you for choosing The Artisan Oven! Please call +65 6123 4567 or email hello@theartisanoven.sg to place your pre-order.");
+}
+
+btnPreorder.addEventListener('click', openBooking);
+btnPreorderBottom.addEventListener('click', openBooking);
+
+registerForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  registerStatus.textContent = 'Registering...';
+  const email = registerForm.email.value.trim();
+  const name = registerForm.name.value.trim();
+  if(!email || !name){
+    registerStatus.textContent = 'Please fill in all fields.';
+    return;
+  }
+  const msg = await registerUser(email, name);
+  registerStatus.textContent = msg;
+  if(msg === 'Registered successfully!'){
+    registerForm.reset();
+  }
+});
+
+updateForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  updateStatus.textContent = 'Updating...';
+  const oldEmail = updateForm.oldEmail.value.trim();
+  const newEmail = updateForm.newEmail.value.trim();
+  if(!oldEmail || !newEmail){
+    updateStatus.textContent = 'Please fill in both email fields.';
+    return;
+  }
+  const msg = await updateUserEmail(oldEmail, newEmail);
+  updateStatus.textContent = msg;
+  if(msg === 'Email updated successfully!'){
+    updateForm.reset();
+  }
+});
+
+// Navigation active link switching on scroll
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
+const sections = [...navLinks].map(l => document.querySelector(l.getAttribute('href')));
+
+function onScroll() {
+  const scrollY = window.pageYOffset + 90;
+  let currentIndex = sections.findIndex(section =>
+    scrollY >= section.offsetTop && scrollY < section.offsetTop + section.offsetHeight
+  );
+  if(currentIndex === -1) currentIndex = 0;
+  navLinks.forEach((link, i) => {
+    link.classList.toggle('active', i === currentIndex);
+  });
+}
+window.addEventListener('scroll', onScroll);
+onScroll();
+</script>
+
+</body>
+</html>
